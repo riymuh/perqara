@@ -8,7 +8,9 @@ module.exports = {
     "./nuxt.config.{js,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      visibility: ["group-hover"],
+    },
   },
   plugins: [],
-}
+};

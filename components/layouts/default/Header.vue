@@ -149,7 +149,9 @@
                       font-medium
                     "
                     aria-current="page"
-                    >CATEGORIES</a
+                  >
+                    <fa :icon="['fas', 'list']" />
+                    CATEGORIES</a
                   >
 
                   <a
