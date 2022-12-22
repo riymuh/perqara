@@ -2,9 +2,9 @@
   <div class="bg-gray-900 pb-12">
     <!-- recomendation movies -->
     <!-- bg-[url('http://images6.fanpop.com/image/photos/38700000/First-Official-Deadpool-2016-Promotional-Banner-deadpool-2016-38737061-1800-600.jpg')] -->
-    <div class="relative bg-cover h-96 bg-[url('http://images6.fanpop.com/image/photos/38700000/First-Official-Deadpool-2016-Promotional-Banner-deadpool-2016-38737061-1800-600.jpg')]">
+    <div class="relative bg-cover h-96 bg-[url('https://anfieldindex.com/wp-content/uploads/2016/09/ew-deadpool-poster-banner.jpg')]">
       <div
-        class="absolute left-0 bottom-0 w-full h-16 bg-gray-900 bg-opacity-70"
+        class="absolute left-0 bottom-0 w-full h-16 bg-gray-900 bg-opacity-90"
       ></div>
       <div
         class="flex gap-5 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 pt-20 relative"
