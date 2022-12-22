@@ -77,7 +77,7 @@
           <div class="flex flex-shrink-0 items-center">
             <LayoutsLogo />
           </div>
-          <div class="relative ml-3 md:mr-0 hidden md:block">
+          <div class="relative ml-6 md:mr-0 hidden md:block shrink w-full">
             <div
               class="
                 absolute
