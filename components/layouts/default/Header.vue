@@ -153,9 +153,19 @@
                     <fa :icon="['fas', 'list']" />
                     CATEGORIES</a
                   >
+                  <NuxtLink to="/movies" class="
+                      text-gray-300
+                      hover:bg-gray-700 hover:text-white
+                      px-3
+                      py-2
+                      rounded-md
+                      text-sm
+                      font-medium
+                    ">
+                    MOVIES
+                </NuxtLink>
 
-                  <a
-                    href="#"
+                  <NuxtLink to="/#"
                     class="
                       text-gray-300
                       hover:bg-gray-700 hover:text-white
@@ -165,21 +175,7 @@
                       text-sm
                       font-medium
                     "
-                    >MOVIES</a
-                  >
-
-                  <a
-                    href="#"
-                    class="
-                      text-gray-300
-                      hover:bg-gray-700 hover:text-white
-                      px-3
-                      py-2
-                      rounded-md
-                      text-sm
-                      font-medium
-                    "
-                    >TV SHOWS</a
+                    >TV SHOWS</NuxtLink
                   >
 
                   <a

@@ -1,6 +1,8 @@
 <template>
     <div class="bg-gray-900 pb-12">
+        <!-- background highlight -->
         <div class="bg-gray-800 w-full h-64 absolute z-0"></div>
+        <!-- background highlight -->
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mb-20">
             <div class="flex justify-between mb-12 pt-20 relative">
                 <div class=" border-t-4 border-red-700 pt-4">
