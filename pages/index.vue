@@ -1,7 +1,7 @@
 <template>
   <div class="bg-gray-800 pb-12">
     <!-- corousel banner -->
-    <div class="carousel mb-12">
+    <div class="carousel mb-20">
       <div class="carousel-inner">
         <input
           class="carousel-open"
@@ -69,12 +69,12 @@
       </div>
     </div>
     <!-- corousel banner -->
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mb-20">
       <div class="flex justify-between">
-        <div class="">
+        <div class=" border-t-4 border-red-700 pt-4">
           <h1 class="text-white text-2xl">Discover Movies</h1>
         </div>
-        <div>
+        <div class="mb-12 pt-4">
           <button
             type="button"
             class="
@@ -124,7 +124,6 @@
           gap-5
           items-center
           justify-between
-          pt-8
         "
       >
         <div class="max-w-sm relative" v-for="n in 10" :key="n">
@@ -142,8 +141,7 @@
                   text-2l
                   font-bold
                   tracking-tight
-                  text-gray-900
-                  dark:text-white
+                  text-white
                 "
               >
                 Deadpool
@@ -151,10 +149,13 @@
               <span class="text-2l font-thin text-gray-500">2016</span>
             </a>
           </div>
+          <div class="bg-opacity-90 bg-gray-500 w-12 h-6 absolute top-0 right-0 text-white text-center">
+            7.8
+          </div>
           <div
             class="
-              invisible
-              group-hover:visible group-hover:bg-black
+              hidden
+              focus:block
               bg-black
               w-full
               h-full
