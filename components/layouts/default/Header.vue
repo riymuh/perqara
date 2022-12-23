@@ -6,16 +6,7 @@
           <!-- Mobile menu button-->
           <button
             type="button"
-            class="
-              inline-flex
-              items-center
-              justify-center
-              rounded-md
-              p-2
-              text-gray-400
-              hover:bg-gray-700 hover:text-white
-              focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white
-            "
+            class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
             aria-controls="mobile-menu"
             aria-expanded="false"
           >
@@ -67,27 +58,14 @@
           </button>
         </div>
         <div
-          class="
-            flex flex-1
-            items-center
-            justify-center
-            sm:items-stretch sm:justify-start
-          "
+          class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
         >
           <div class="flex flex-shrink-0 items-center">
             <LayoutsLogo />
           </div>
           <div class="relative ml-6 md:mr-0 hidden md:block shrink w-full">
             <div
-              class="
-                absolute
-                inset-y-0
-                left-0
-                pl-3
-                flex
-                items-center
-                pointer-events-none
-              "
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
             >
               <svg
                 class="w-5 h-5 text-gray-500"
@@ -105,31 +83,13 @@
             <input
               type="text"
               id="email-adress-icon"
-              class="
-                bg-slate-900
-                text-gray-900
-                sm:text-sm
-                rounded-md
-                focus:ring-blue-500 focus:border-blue-500
-                block
-                w-full
-                pl-10
-                p-2
-              "
+              class="bg-slate-900 text-gray-900 sm:text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2"
               placeholder="Search..."
             />
           </div>
         </div>
         <div
-          class="
-            absolute
-            inset-y-0
-            right-0
-            flex
-            items-center
-            pr-2
-            sm:static sm:inset-auto sm:ml-6 sm:pr-0
-          "
+          class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
         >
           <!-- Profile dropdown -->
           <div class="relative ml-3">
@@ -137,58 +97,63 @@
               <div class="hidden sm:ml-6 sm:block">
                 <div class="flex space-x-4">
                   <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                  <a
-                    href="#"
-                    class="
-                      bg-gray-900
-                      text-white
-                      px-3
-                      py-2
-                      rounded-md
-                      text-sm
-                      font-medium
-                    "
-                    aria-current="page"
-                  >
-                    <fa :icon="['fas', 'list']" />
-                    CATEGORIES</a
-                  >
-                  <NuxtLink to="/movies" class="
-                      text-gray-300
-                      hover:bg-gray-700 hover:text-white
-                      px-3
-                      py-2
-                      rounded-md
-                      text-sm
-                      font-medium
-                    ">
-                    MOVIES
-                </NuxtLink>
+        
+                  <div class="dropdown relative">
+                    <button
+                      class="dropdown-toggle px-3 py-2 bg-gray-900 text-white font-medium text-sm uppercase rounded-md transition duration-150 ease-in-out flex items-center whitespace-nowrap"
+                      type="button"
+                      id="dropdownMenuButton1"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      @click="dropdownHandler"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fas"
+                        data-icon="caret-down"
+                        class="w-2 mr-2"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                        ></path>
+                      </svg>
+                      CATEGORIES
+                    </button>
+                    <ul
+                      :class="dropdown_status ? 'dropdown-menu min-w-max absolute bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 m-0 bg-clip-padding border-none' : 'dropdown-menu hidden min-w-max absolute bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 m-0 bg-clip-padding border-none'"
+                      aria-labelledby="dropdownMenuButton1"
+                    >
+                      <li v-for="category in categories" :key="category.id">
+                        <a
+                          class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                          href="#"
+                          >{{ category.name }}</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
 
-                  <NuxtLink to="/#"
-                    class="
-                      text-gray-300
-                      hover:bg-gray-700 hover:text-white
-                      px-3
-                      py-2
-                      rounded-md
-                      text-sm
-                      font-medium
-                    "
+                  <NuxtLink
+                    to="/movies"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    MOVIES
+                  </NuxtLink>
+
+                  <NuxtLink
+                    to="/#"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >TV SHOWS</NuxtLink
                   >
 
                   <a
                     href="#"
-                    class="
-                      text-gray-300
-                      hover:bg-gray-700 hover:text-white
-                      px-3
-                      py-2
-                      rounded-md
-                      text-sm
-                      font-medium
-                    "
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >LOGIN</a
                   >
                 </div>
@@ -205,65 +170,61 @@
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
         <a
           href="#"
-          class="
-            bg-gray-900
-            text-white
-            block
-            px-3
-            py-2
-            rounded-md
-            text-base
-            font-medium
-          "
+          class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           aria-current="page"
           >Dashboard</a
         >
 
         <a
           href="#"
-          class="
-            text-gray-300
-            hover:bg-gray-700 hover:text-white
-            block
-            px-3
-            py-2
-            rounded-md
-            text-base
-            font-medium
-          "
+          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >Team</a
         >
 
         <a
           href="#"
-          class="
-            text-gray-300
-            hover:bg-gray-700 hover:text-white
-            block
-            px-3
-            py-2
-            rounded-md
-            text-base
-            font-medium
-          "
+          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >Projects</a
         >
 
         <a
           href="#"
-          class="
-            text-gray-300
-            hover:bg-gray-700 hover:text-white
-            block
-            px-3
-            py-2
-            rounded-md
-            text-base
-            font-medium
-          "
+          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >Calendar</a
         >
       </div>
     </div>
   </nav>
 </template>
+
+<script>
+export default{
+  mounted()
+  {
+    this.getGenres()
+  },  
+  data()
+  {
+    return {
+      categories: [],
+      dropdown_status: false
+    }
+  },
+  methods:{
+    getGenres() {
+      this.$store.dispatch('movie/genres/fetchGenres')
+        .then((res) => {
+          this.categories = this.$store.state.movie.genres.data
+        })
+        .catch((error) => {
+          //show alert
+          console.log("something went wrong" + error)
+        });
+    },
+    dropdownHandler()
+    {
+      this.dropdown_status = !this.dropdown_status
+    }
+  }
+}
+</script>
