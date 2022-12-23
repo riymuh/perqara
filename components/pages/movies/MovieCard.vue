@@ -8,8 +8,8 @@
       />
     </a>
     <div class="py-2">
-      <a href="#">
-        <h5 class="text-2l font-bold tracking-tight text-white">
+      <a href="#" class="flex flex-col">
+        <h5 class="text-2l font-bold tracking-tight text-white truncate">
           {{ movie.original_title }}
         </h5>
         <span class="text-2l font-thin text-gray-500">{{

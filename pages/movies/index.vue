@@ -6,29 +6,25 @@
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mb-20">
       <div class="flex justify-between mb-12 pt-20 relative">
         <div class="border-t-4 border-red-700 pt-4">
-          <h1 class="text-white text-2xl">Movies</h1>
+          <h1 class="text-white text-2xl">{{ title_page }} {{ count }}a</h1>
         </div>
       </div>
       <div class="flex gap-8 relative">
         <div class="shrink w-1/4">
-          <div
-            class="
+          <div class="
               max-w-sm
               py-6
               bg-gray-900
               rounded-lg
               shadow-md
               grid grid-cols-1
-            "
-          >
+            ">
             <a href="#" class="mb-2.5 mx-6">
               <h5 class="mb-2 text-1xl font-bold tracking-tight text-white">
                 Sort Result By
               </h5>
             </a>
-            <select
-              id="countries"
-              class="
+            <select id="countries" class="
                 bg-gray-700
                 text-gray-100 text-sm
                 rounded-lg
@@ -38,93 +34,29 @@
                 my-2.5
                 mx-6
               "
-            >
-              <option selected>Popularity</option>
-              <option value="US">United States</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
+              @change="filterMovies"
+              >
+              <PagesMoviesSortDropDown v-for="sort in sorts_dropdown" :key="sort.id" :sort="sort" />
             </select>
             <a href="#" class="my-2.5 mx-6">
               <h5 class="mb-2 text-1xl font-bold tracking-tight text-white">
                 Genres
               </h5>
             </a>
-            <ul
-              class="text-sm text-gray-700 dark:text-gray-200 my-2.5 mx-6"
-              aria-labelledby="dropdownSearchButton"
-            >
-              <li class="pb-1.5">
-                <div class="flex">
-                  <label
-                    for="checkbox-item-11"
-                    class="w-full text-sm font-medium text-gray-100"
-                    >Action</label
-                  >
-                  <input
-                    id="checkbox-item-11"
-                    type="checkbox"
-                    value=""
-                    class="
-                      w-4
-                      h-4
-                      text-blue-600
-                      bg-gray-100
-                      rounded
-                      border-gray-300
-                      focus:ring-blue-500
-                      dark:focus:ring-blue-600 dark:ring-offset-gray-700
-                      focus:ring-2
-                      dark:bg-gray-600 dark:border-gray-500
-                    "
-                  />
-                </div>
-              </li>
-              <li class="py-1.5">
-                <div class="flex">
-                  <label
-                    for="checkbox-item-11"
-                    class="w-full text-sm font-medium text-gray-100"
-                    >Animation</label
-                  >
-                  <input
-                    id="checkbox-item-11"
-                    type="checkbox"
-                    value=""
-                    class="
-                      w-4
-                      h-4
-                      text-blue-600
-                      bg-gray-100
-                      rounded
-                      border-gray-300
-                      focus:ring-blue-500
-                      dark:focus:ring-blue-600 dark:ring-offset-gray-700
-                      focus:ring-2
-                      dark:bg-gray-600 dark:border-gray-500
-                    "
-                  />
-                </div>
-              </li>
+            <ul class="text-sm text-gray-700 dark:text-gray-200 my-2.5 mx-6" aria-labelledby="dropdownSearchButton">
+              <PagesMoviesGenreCard v-for="genre in genres" :key="genre.id" :genre="genre" />
             </ul>
           </div>
         </div>
         <div class="relative w-full">
           <div class="grid grid-cols-4 gap-5 items-center justify-between">
-            <PagesMoviesMovieCard
-              v-for="movie in movies"
-              :key="movie.id"
-              :movie="movie"
-            />
+            <PagesMoviesMovieCard v-for="movie in movies" :key="movie.id" :movie="movie" />
           </div>
           <div class="text-center mt-8">
-            <button
-              type="button"
-              class="
+            <button type="button" @click="loadMore" class="
                 text-white
                 bg-red-700
                 hover:bg-red-800
-                focus:outline-none focus:ring-4 focus:ring-red-300
                 font-medium
                 rounded-full
                 text-sm
@@ -133,9 +65,7 @@
                 text-center
                 mr-2
                 mb-2
-                dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900
-              "
-            >
+              ">
               Load more
             </button>
           </div>
@@ -152,21 +82,71 @@ export default {
   name: "MoviesPage",
   mounted() {
     this.getMovies();
+    this.getGenres();
+  },
+  computed: {
+    count () {
+      return this.$store.state.movie.movies.counter
+    }
   },
   data() {
     return {
-      movies: null,
+      title_page: "Movies",
+      movies: [],
+      genres: null,
       pages: null,
+      sorts_dropdown: [
+        {
+          id: 0,
+          name: "Popular",
+          value: "popular"
+        },
+        {
+          id: 1,
+          name: "Top Rated",
+          value: "top_rated"
+        },
+        {
+          id: 2,
+          name: "Upcoming",
+          value: "upcoming"
+        },
+        {
+          id: 3,
+          name: "Latest",
+          value: "latest"
+        },
+        {
+          id: 4,
+          name: "Now Playing",
+          value: "now_playing"
+        }
+      ],
+      sort_selected: "popular" //default
     };
   },
   methods: {
     getMovies() {
       axios
         .get(
-          "https://api.themoviedb.org/3/movie/upcoming?page=2&api_key=84592cf2007007a499b04d12d281c100"
+          "https://api.themoviedb.org/3/movie/"+this.sort_selected+"?page="+this.pages+"&api_key=84592cf2007007a499b04d12d281c100"
         )
         .then((res) => {
-          console.log(res);
+          //this.movies = res.data.results;
+          this.movies = [ ...this.movies, ...res.data.results ]
+          //this.movies = this.movies.push(res.data.results);
+          this.pages = res.data.page;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    getMoviesFilter() {
+      axios
+        .get(
+          "https://api.themoviedb.org/3/movie/"+this.sort_selected+"?page="+this.pages+"&api_key=84592cf2007007a499b04d12d281c100"
+        )
+        .then((res) => {
           this.movies = res.data.results;
           this.pages = res.data.page;
         })
@@ -174,6 +154,29 @@ export default {
           console.log(error);
         });
     },
+    getGenres() {
+      axios
+        .get(
+          "https://api.themoviedb.org/3/genre/movie/list?api_key=84592cf2007007a499b04d12d281c100"
+        )
+        .then((res) => {
+          this.genres = res.data.genres;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    loadMore()
+    {
+      this.pages += 1;
+      this.getMovies();
+    },
+    filterMovies(e)
+    {
+      this.sort_selected = e.target.value;
+      this.pages = 1;
+      this.getMoviesFilter();
+    }
   },
 };
 </script>
