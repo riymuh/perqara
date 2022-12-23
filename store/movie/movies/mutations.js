@@ -1,5 +1,5 @@
 export default {
-    increment(state) {
-      state.counter++
-    }
+  setMovies(state, movies) {
+    state.data = [...state.data, ...movies];
   }
+}
