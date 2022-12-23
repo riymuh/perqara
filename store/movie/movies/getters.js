@@ -1,5 +1,5 @@
 export default {
-    getCounter(state) {
-      return state.counter
+    getMoviesFilter(state) {
+      return state.data;
     }
   }

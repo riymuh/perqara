@@ -43,33 +43,22 @@
             </a>
 
             <ul class="text-sm text-gray-700 dark:text-gray-200 my-2.5 mx-6" aria-labelledby="dropdownSearchButton"
-              v-if="genres">
+              v-if="genres.length !== 0">
               <PagesMoviesGenreCard v-for="genre in genres" :key="genre.id" :genre="genre" />
             </ul>
-            <div v-else>
-              <button type="button" class="
-                text-white
-                bg-red-700
-                hover:bg-red-800
-                font-medium
-                rounded-full
-                text-sm
-                px-5
-                py-1
-                text-center
-                mr-2
-                mb-2
-              ">
-                Please reload
-              </button>
+            <div class="text-center" v-else>
+              <ReuseableSpinner />
             </div>
           </div>
         </div>
         <div class="relative w-full">
-          <div class="grid grid-cols-4 gap-5 items-center justify-between">
+          <div class="grid grid-cols-4 gap-5 items-center justify-between" v-if="movies.length !== 0">
             <PagesMoviesMovieCard v-for="movie in movies" :key="movie.id" :movie="movie" />
           </div>
-          <div class="text-center mt-8">
+          <div class="text-center" v-else>
+            <ReuseableSpinner />
+          </div>
+          <div class="text-center mt-8" v-if="movies.length !== 0">
             <button type="button" @click="loadMore" class="
                 text-white
                 bg-red-700
@@ -103,7 +92,7 @@ export default {
     return {
       title_page: "Movies",
       movies: [],
-      genres: null,
+      genres: [],
       pages: 1,
       sorts_dropdown: this.$store.state.movie.sort.data,
       sort_selected: "popular" //default
