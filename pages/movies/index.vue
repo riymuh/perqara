@@ -6,7 +6,7 @@
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mb-20">
       <div class="flex justify-between mb-12 pt-20 relative">
         <div class="border-t-4 border-red-700 pt-4">
-          <h1 class="text-white text-2xl">{{ title_page }}</h1>
+          <h1 class="text-white text-4xl font-bold">{{ title_page }}</h1>
         </div>
       </div>
       <div class="flex gap-8 relative">

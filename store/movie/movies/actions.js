@@ -32,4 +32,23 @@ export default {
         });
     });
   },
+  fetchReviews({ commit }, param) {
+    console.log(param);
+    this.$axios
+      .$get(
+        "https://api.themoviedb.org/3/movie/" +
+          param.movie_id +
+          "/reviews?api_key=84592cf2007007a499b04d12d281c100"
+      )
+      .then((res) => {
+        console.log(res.results);
+        setTimeout(function () {
+          commit("setReviews", res.results);
+          resolve("success");
+        }, 2000);
+      })
+      .catch((error) => {
+        //reject(error);
+      });
+  },
 };

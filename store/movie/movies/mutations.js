@@ -6,4 +6,8 @@ export default {
       state.data = data.movies;
     }
   },
+  setReviews(state, data) {
+    console.log("hah" + data);
+    state.reviews = data;
+  },
 };

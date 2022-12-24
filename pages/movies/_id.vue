@@ -87,110 +87,19 @@
       <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="flex justify-between mb-12 pt-20 relative">
           <div class="pt-4">
-            <h1 class="text-red-600 text-2l">REVIEWS</h1>
+            <h1 class="text-red-600 text-2l font-bold">REVIEWS</h1>
           </div>
         </div>
         <div class="flex gap-5 relative">
           <div class="relative w-full">
-            <div class="grid grid-cols-2 gap-5 items-center justify-between">
-              <div class="p-6 bg-gray-200 border rounded-lg shadow-md">
-                <div class="flex justify-between">
-                  <div class="relative">
-                    <div class="flex items-center gap-5 pb-10">
-                      <img
-                        class="w-24 h-24 mb-3 rounded-full shadow-lg"
-                        src="/docs/images/people/profile-picture-3.jpg"
-                        alt="Bonnie image"
-                      />
-                      <div class="flex flex-col">
-                        <h5 class="mb-1 text-xl font-medium text-gray-900">
-                          Bonnie Green
-                        </h5>
-                        <span class="text-sm text-gray-500 dark:text-gray-400"
-                          >Visual Designer</span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mb-12 pt-4 relative">
-                    <button
-                      type="button"
-                      class="
-                        text-white
-                        bg-gray-400
-                        font-medium
-                        rounded-lg
-                        text-sm
-                        px-5
-                        py-1
-                        text-center
-                        mr-2
-                        mb-2
-                        dark:bg-red-600
-                        dark:hover:bg-red-700
-                        dark:focus:ring-red-900
-                      "
-                    >
-                      9.0
-                    </button>
-                  </div>
-                </div>
-                <p class="mb-3 text-1l text-gray-900">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Saepe deleniti quia itaque mollitia aspernatur maiores
-                  reprehenderit reiciendis assumenda tempore ullam ex suscipit,
-                  accusamus optio. Sequi quae quasi libero dolor. Expedita!
-                </p>
-              </div>
-              <div class="p-6 bg-gray-200 border rounded-lg shadow-md">
-                <div class="flex justify-between">
-                  <div class="relative">
-                    <div class="flex items-center gap-5 pb-10">
-                      <img
-                        class="w-24 h-24 mb-3 rounded-full shadow-lg"
-                        src="/docs/images/people/profile-picture-3.jpg"
-                        alt="Bonnie image"
-                      />
-                      <div class="flex flex-col">
-                        <h5 class="mb-1 text-xl font-medium text-gray-900">
-                          Bonnie Green
-                        </h5>
-                        <span class="text-sm text-gray-500"
-                          >Visual Designer</span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mb-12 pt-4 relative">
-                    <button
-                      type="button"
-                      class="
-                        text-white
-                        bg-gray-400
-                        font-medium
-                        rounded-lg
-                        text-sm
-                        px-5
-                        py-1
-                        text-center
-                        mr-2
-                        mb-2
-                        dark:bg-red-600
-                        dark:hover:bg-red-700
-                        dark:focus:ring-red-900
-                      "
-                    >
-                      9.0
-                    </button>
-                  </div>
-                </div>
-                <p class="mb-3 text-1l text-gray-900">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Saepe deleniti quia itaque mollitia aspernatur maiores
-                  reprehenderit reiciendis assumenda tempore ullam ex suscipit,
-                  accusamus optio. Sequi quae quasi libero dolor. Expedita!
-                </p>
-              </div>
+            <div class="grid grid-cols-2 gap-5 justify-between">
+              <template v-for="(review, index) in reviews">
+                <PagesMoviesReviewCard
+                  :review="review"
+                  :key="index"
+                  v-if="index <= 1"
+                />
+              </template>
             </div>
           </div>
         </div>
@@ -207,11 +116,13 @@
       <div class="flex gap-5 relative">
         <div class="relative w-full">
           <div class="grid grid-cols-5 gap-5 items-center justify-between">
-            <PagesMoviesMovieCard
-              v-for="movie in movies"
-              :key="movie.id"
-              :movie="movie"
-            />
+            <template v-for="(movie, index) in movies">
+              <PagesMoviesMovieCard
+                :key="index"
+                :movie="movie"
+                v-if="index <= 4"
+              />
+            </template>
           </div>
         </div>
       </div>
@@ -221,12 +132,16 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: "MoviesPage",
   mounted() {
     this.getMovies();
+    this.getReviews();
+  },
+  computed: {
+    reviews() {
+      return this.$store.state.movie.movies.reviews;
+    },
   },
   data() {
     return {
@@ -236,18 +151,25 @@ export default {
   },
   methods: {
     getMovies() {
-      axios
-        .get(
-          "https://api.themoviedb.org/3/movie/upcoming?page=2&api_key=84592cf2007007a499b04d12d281c100"
-        )
+      this.$store
+        .dispatch("movie/movies/fetchMovies", {
+          sort: "popular",
+          page: 1,
+          load_more: false,
+        })
         .then((res) => {
-          console.log(res);
-          this.movies = res.data.results;
-          this.pages = res.data.page;
+          this.movies = this.$store.state.movie.movies.data;
+          this.pages += 1;
         })
         .catch((error) => {
-          console.log(error);
+          //show alert
+          console.log("something went wrong" + error);
         });
+    },
+    getReviews() {
+      this.$store.dispatch("movie/movies/fetchReviews", {
+        movie_id: this.$route.params.id,
+      });
     },
   },
 };
