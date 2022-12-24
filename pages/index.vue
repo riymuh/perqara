@@ -7,7 +7,9 @@
           :class="
             banner_active == 1
               ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-2'
-              : 'flex shrink-0 max-w-2xl rounded-lg items-center order-1'
+              : banner_active == 2
+              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-1'
+              : 'flex shrink-0 max-w-2xl rounded-lg items-center order-3'
           "
         >
           <a href="#">
@@ -43,6 +45,8 @@
           :class="
             banner_active == 2
               ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-2'
+              : banner_active == 3
+              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-1'
               : 'flex shrink-0 max-w-2xl rounded-lg items-center order-3'
           "
         >
@@ -79,7 +83,9 @@
           :class="
             banner_active == 3
               ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-2'
-              : 'flex shrink-0 max-w-2xl rounded-lg items-center order-4'
+              : banner_active == 2
+              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-3'
+              : 'flex shrink-0 max-w-2xl rounded-lg items-center order-1'
           "
         >
           <a href="#">
