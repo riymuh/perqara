@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-gray-900 pb-12">
+  <div class="bg-gray-900">
     <!-- corousel banner -->
-    <div class="carousel">
+    <div class="carousel hidden">
       <div class="carousel-inner">
         <input
           class="carousel-open"
@@ -70,10 +70,10 @@
     </div>
     <!-- corousel banner -->
     <div class="bg-gray-800 w-full h-96 absolute z-0"></div>
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 pt-20 mb-20">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-20">
       <div class="flex justify-between">
         <div class="border-t-4 border-red-700 pt-4 relative">
-          <h1 class="text-white text-2xl">Discover Movies</h1>
+          <h1 class="text-white text-3xl font-bold">Discover Movies</h1>
         </div>
         <div class="mb-12 pt-4 relative">
           <button
