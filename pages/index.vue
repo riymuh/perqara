@@ -3,11 +3,17 @@
     <!-- banner -->
     <div class="flex flex-col h-screen bg-gray-900 overflow-hidden pb-10">
       <div class="m-auto flex gap-14 overflow-hidden justify-center">
-        <div class="flex shrink-0 max-w-2xl rounded-lg items-center">
+        <div
+          :class="
+            banner_active == 1
+              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-2'
+              : 'flex shrink-0 max-w-2xl rounded-lg items-center order-1'
+          "
+        >
           <a href="#">
             <img
               class="flex-none max-w-xs"
-              src="https://image.tmdb.org/t/p/original//1NqwE6LP9IEdOZ57NCT51ftHtWT.jpg"
+              src="https://image.tmdb.org/t/p/original//rugyJdeoJm7cSJL1q4jBpTNbxyU.jpg"
               alt=""
             />
           </a>
@@ -33,7 +39,13 @@
             </p>
           </div>
         </div>
-        <div class="flex shrink-0 max-w-2xl rounded-lg items-center">
+        <div
+          :class="
+            banner_active == 2
+              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-2'
+              : 'flex shrink-0 max-w-2xl rounded-lg items-center order-3'
+          "
+        >
           <a href="#">
             <img
               class="flex-none max-w-xs"
@@ -63,11 +75,17 @@
             </p>
           </div>
         </div>
-        <div class="flex shrink-0 max-w-2xl rounded-lg items-center">
+        <div
+          :class="
+            banner_active == 3
+              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-2'
+              : 'flex shrink-0 max-w-2xl rounded-lg items-center order-4'
+          "
+        >
           <a href="#">
             <img
               class="flex-none max-w-xs"
-              src="https://image.tmdb.org/t/p/original//1NqwE6LP9IEdOZ57NCT51ftHtWT.jpg"
+              src="https://image.tmdb.org/t/p/original//rFljUdOozFEv6HDHIFpFvcYW0ec.jpg"
               alt=""
             />
           </a>
@@ -95,9 +113,30 @@
         </div>
       </div>
       <div class="flex gap-8 mx-auto">
-        <div class="w-20 h-3 rounded-full bg-red-600"></div>
-        <div class="w-3 h-3 rounded-full bg-gray-200"></div>
-        <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+        <div
+          :class="
+            banner_active == 1
+              ? 'w-20 h-3 rounded-full bg-red-600 order-1 cursor-pointer'
+              : 'w-3 h-3 rounded-full bg-gray-200 order-2 cursor-pointer'
+          "
+          @click="handlerBanner(1)"
+        ></div>
+        <div
+          :class="
+            banner_active == 2
+              ? 'w-20 h-3 rounded-full bg-red-600 order-2 cursor-pointer'
+              : 'w-3 h-3 rounded-full bg-gray-200 order-2 cursor-pointer'
+          "
+          @click="handlerBanner(2)"
+        ></div>
+        <div
+          :class="
+            banner_active == 3
+              ? 'w-20 h-3 rounded-full bg-red-600 order-3 cursor-pointer'
+              : 'w-3 h-3 rounded-full bg-gray-200 order-3 cursor-pointer'
+          "
+          @click="handlerBanner(3)"
+        ></div>
       </div>
     </div>
     <!-- banner -->
@@ -172,6 +211,7 @@ export default {
     return {
       movies: null,
       pages: null,
+      banner_active: 1,
     };
   },
   methods: {
@@ -188,6 +228,9 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    handlerBanner(param) {
+      this.banner_active = param;
     },
   },
 };
