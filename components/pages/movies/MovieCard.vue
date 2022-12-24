@@ -44,7 +44,8 @@
       <div class="text-gray-100 text-center m-auto flex flex-col gap-5">
         <p>{{ movie.vote_average }}</p>
         <p>Action</p>
-        <button
+        <NuxtLink
+          :to="{ path: '/movies/' + movie.id }"
           class="
             text-white
             bg-red-700
@@ -59,7 +60,7 @@
           "
         >
           view
-        </button>
+        </NuxtLink>
       </div>
     </div>
   </div>

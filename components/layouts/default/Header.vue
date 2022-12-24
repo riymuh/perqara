@@ -144,7 +144,7 @@
                     whitespace-nowrap
                     bg-transparent
                     text-gray-100
-                    hover:bg-gray-100
+                    hover:bg-gray-800
                   "
                   href="#"
                   >{{ movie.original_title }}</a
