@@ -1,74 +1,106 @@
 <template>
   <div class="bg-gray-900">
-    <!-- corousel banner -->
-    <div class="carousel hidden">
-      <div class="carousel-inner">
-        <input
-          class="carousel-open"
-          type="radio"
-          id="carousel-1"
-          name="carousel"
-          aria-hidden="true"
-          hidden=""
-          checked="checked"
-        />
-        <div class="carousel-item">
-          <img src="http://fakeimg.pl/2000x800/0079D8/fff/?text=Without" />
+    <!-- banner -->
+    <div class="flex flex-col h-screen bg-gray-900 overflow-hidden pb-10">
+      <div class="m-auto flex gap-14 overflow-hidden justify-center">
+        <div class="flex shrink-0 max-w-2xl rounded-lg items-center">
+          <a href="#">
+            <img
+              class="flex-none max-w-xs"
+              src="https://image.tmdb.org/t/p/original//1NqwE6LP9IEdOZ57NCT51ftHtWT.jpg"
+              alt=""
+            />
+          </a>
+          <div class="p-5 h-96 bg-gray-800">
+            <a href="#">
+              <h5
+                class="
+                  mb-2
+                  text-2xl
+                  font-bold
+                  tracking-tight
+                  text-gray-900
+                  dark:text-white
+                "
+              >
+                The Woman King
+              </h5>
+            </a>
+            <span class="text-gray-400">2021</span>
+            <p class="mb-3 font-normal text-gray-400">
+              Here are the biggest enterprise technology acquisitions of 2021 so
+              far, in reverse chronological order.
+            </p>
+          </div>
         </div>
-        <input
-          class="carousel-open"
-          type="radio"
-          id="carousel-2"
-          name="carousel"
-          aria-hidden="true"
-          hidden=""
-        />
-        <div class="carousel-item">
-          <img src="http://fakeimg.pl/2000x800/DA5930/fff/?text=JavaScript" />
+        <div class="flex shrink-0 max-w-2xl rounded-lg items-center">
+          <a href="#">
+            <img
+              class="flex-none max-w-xs"
+              src="https://image.tmdb.org/t/p/original//1NqwE6LP9IEdOZ57NCT51ftHtWT.jpg"
+              alt=""
+            />
+          </a>
+          <div class="p-5 h-96 bg-black">
+            <a href="#">
+              <h5
+                class="
+                  mb-2
+                  text-2xl
+                  font-bold
+                  tracking-tight
+                  text-gray-900
+                  dark:text-white
+                "
+              >
+                The Woman King
+              </h5>
+            </a>
+            <span class="text-gray-400">2021</span>
+            <p class="mb-3 font-normal text-gray-400">
+              Here are the biggest enterprise technology acquisitions of 2021 so
+              far, in reverse chronological order.
+            </p>
+          </div>
         </div>
-        <input
-          class="carousel-open"
-          type="radio"
-          id="carousel-3"
-          name="carousel"
-          aria-hidden="true"
-          hidden=""
-        />
-        <div class="carousel-item">
-          <img src="http://fakeimg.pl/2000x800/F90/fff/?text=Carousel" />
+        <div class="flex shrink-0 max-w-2xl rounded-lg items-center">
+          <a href="#">
+            <img
+              class="flex-none max-w-xs"
+              src="https://image.tmdb.org/t/p/original//1NqwE6LP9IEdOZ57NCT51ftHtWT.jpg"
+              alt=""
+            />
+          </a>
+          <div class="p-5 h-96 bg-black">
+            <a href="#">
+              <h5
+                class="
+                  mb-2
+                  text-2xl
+                  font-bold
+                  tracking-tight
+                  text-gray-900
+                  dark:text-white
+                "
+              >
+                The Woman King
+              </h5>
+            </a>
+            <span class="text-gray-400">2021</span>
+            <p class="mb-3 font-normal text-gray-400">
+              Here are the biggest enterprise technology acquisitions of 2021 so
+              far, in reverse chronological order.
+            </p>
+          </div>
         </div>
-        <label for="carousel-3" class="carousel-control prev control-1"
-          >‹</label
-        >
-        <label for="carousel-2" class="carousel-control next control-1"
-          >›</label
-        >
-        <label for="carousel-1" class="carousel-control prev control-2"
-          >‹</label
-        >
-        <label for="carousel-3" class="carousel-control next control-2"
-          >›</label
-        >
-        <label for="carousel-2" class="carousel-control prev control-3"
-          >‹</label
-        >
-        <label for="carousel-1" class="carousel-control next control-3"
-          >›</label
-        >
-        <ol class="carousel-indicators">
-          <li>
-            <label for="carousel-1" class="carousel-bullet">•</label>
-          </li>
-          <li>
-            <label for="carousel-2" class="carousel-bullet">•</label>
-          </li>
-          <li>
-            <label for="carousel-3" class="carousel-bullet">•</label>
-          </li>
-        </ol>
+      </div>
+      <div class="flex gap-8 mx-auto">
+        <div class="w-20 h-3 rounded-full bg-red-600"></div>
+        <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+        <div class="w-3 h-3 rounded-full bg-gray-200"></div>
       </div>
     </div>
-    <!-- corousel banner -->
+    <!-- banner -->
     <div class="bg-gray-800 w-full h-96 absolute z-0"></div>
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-20">
       <div class="flex justify-between">

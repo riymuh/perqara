@@ -69,8 +69,10 @@
                   <span class="text-sm">{{
                     movie.release_date | onlyYear
                   }}</span>
-                  <h1 class="text-5xl truncate">{{ movie.original_title }}</h1>
-                  <span class="text-sm truncate">{{ movie.tagline }}</span>
+                  <h1 class="text-5xl text-ellipsis">
+                    {{ movie.original_title }}
+                  </h1>
+                  <span class="text-sm text-ellipsis">{{ movie.tagline }}</span>
                 </div>
                 <div class="flex gap-2">
                   <div class="pt-8 pr-8 pb-8">
