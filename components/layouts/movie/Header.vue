@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-gray-800">
+  <nav class="bg-gray-800 w-full absolute top-0 z-10 bg-opacity-30">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -106,7 +106,7 @@
               type="text"
               id="email-adress-icon"
               class="
-                bg-slate-900
+                bg-gray-900 bg-opacity-50
                 text-gray-100
                 sm:text-sm
                 rounded-md
@@ -115,7 +115,6 @@
                 pl-10
                 p-2
                 dropdown-toggle
-                whitespace-nowrap
               "
               @focusin="searchHandler"
               @keyup="searchMovie"
@@ -176,7 +175,7 @@
                         dropdown-toggle
                         px-3
                         py-2
-                        bg-gray-900
+                        bg-gray-900 bg-opacity-50
                         text-white
                         font-medium
                         text-sm

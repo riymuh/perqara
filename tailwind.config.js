@@ -17,5 +17,7 @@ module.exports = {
       '5xl': '3.052rem',
     }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 };

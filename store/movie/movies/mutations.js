@@ -6,8 +6,13 @@ export default {
       state.data = data.movies;
     }
   },
+  setMovie(state, data) {
+    state.movie_detail = data;
+  },
   setReviews(state, data) {
-    console.log("hah" + data);
     state.reviews = data;
+  },
+  setMoviesRecommendation(state, data) {
+    state.recommendations = data.movies;
   },
 };

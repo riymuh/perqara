@@ -38,7 +38,7 @@
         </p>
       </div>
     </div>
-    <p class="mb-3 text-1l text-gray-900">
+    <p class="mb-3 text-1l text-gray-900 line-clamp-6">
       {{ review.content }}
     </p>
   </div>
