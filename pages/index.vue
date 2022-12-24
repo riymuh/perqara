@@ -119,11 +119,9 @@
         </div>
       </div>
       <div class="relative grid grid-cols-5 gap-5 items-center justify-between">
-        <PagesMoviesMovieCard
-          v-for="movie in movies"
-          :key="movie.id"
-          :movie="movie"
-        />
+        <template v-for="(movie, index) in movies">
+          <PagesMoviesMovieCard v-if="index <= 9" :key="index" :movie="movie"
+        /></template>
       </div>
     </div>
   </div>
