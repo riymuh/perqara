@@ -108,8 +108,6 @@
 </template>
   
 <script>
-import axios from "axios";
-
 export default {
   name: "MoviesPage",
   mounted() {
@@ -124,6 +122,7 @@ export default {
       pages: 1,
       sorts_dropdown: this.$store.state.movie.sort.data,
       sort_selected: "popular", //default
+      load_more: true,
     };
   },
   methods: {
@@ -132,6 +131,7 @@ export default {
         .dispatch("movie/movies/fetchMovies", {
           sort: this.sort_selected,
           page: this.pages,
+          load_more: this.load_more,
         })
         .then((res) => {
           this.movies = this.$store.state.movie.movies.data;
@@ -140,23 +140,6 @@ export default {
         .catch((error) => {
           //show alert
           console.log("something went wrong" + error);
-        });
-    },
-    getMoviesFilter() {
-      axios
-        .get(
-          "https://api.themoviedb.org/3/movie/" +
-            this.sort_selected +
-            "?page=" +
-            this.pages +
-            "&api_key=84592cf2007007a499b04d12d281c100"
-        )
-        .then((res) => {
-          this.movies = res.data.results;
-          this.pages = res.data.page;
-        })
-        .catch((error) => {
-          console.log(error);
         });
     },
     getGenres() {
@@ -176,7 +159,8 @@ export default {
     filterMovies(e) {
       this.sort_selected = e.target.value;
       this.pages = 1;
-      this.getMoviesFilter();
+      this.load_more = false;
+      this.getMovies();
     },
   },
 };

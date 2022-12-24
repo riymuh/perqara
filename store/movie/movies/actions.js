@@ -3,9 +3,11 @@ export default {
     return new Promise((resolve, reject) => {
       let sort = "popular";
       let page = 1;
+      let load_more = false;
       if (param) {
         sort = param.sort;
         page = param.page;
+        load_more = param.load_more;
       }
       this.$axios
         .$get(
@@ -17,7 +19,11 @@ export default {
         )
         .then((res) => {
           setTimeout(function () {
-            commit("setMovies", res.results);
+            let data = {
+              movies: res.results,
+              load_more: load_more,
+            };
+            commit("setMovies", data);
             resolve("success");
           }, 2000);
         })

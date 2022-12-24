@@ -118,7 +118,6 @@
                 whitespace-nowrap
               "
               @focusin="searchHandler"
-              @focusout="searchHandler"
               @keyup="searchMovie"
               placeholder="Search..."
             />
@@ -132,7 +131,8 @@
               v-if="filter_movies.length > 0"
             >
               <li v-for="movie in filter_movies" :key="movie.original_title">
-                <a
+                <NuxtLink
+                  :to="{ path: '/movies/' + movie.id }"
                   class="
                     dropdown-item
                     text-sm
@@ -146,8 +146,7 @@
                     text-gray-100
                     hover:bg-gray-800
                   "
-                  href="#"
-                  >{{ movie.original_title }}</a
+                  >{{ movie.original_title }}</NuxtLink
                 >
               </li>
             </ul>
@@ -243,48 +242,24 @@
                     </ul>
                   </div>
 
-                  <NuxtLink
-                    to="/movies"
-                    class="
-                      text-gray-300
-                      hover:bg-gray-700 hover:text-white
-                      px-3
-                      py-2
-                      rounded-md
-                      text-sm
-                      font-medium
-                    "
-                  >
-                    MOVIES
-                  </NuxtLink>
-
-                  <NuxtLink
-                    to="/#"
-                    class="
-                      text-gray-300
-                      hover:bg-gray-700 hover:text-white
-                      px-3
-                      py-2
-                      rounded-md
-                      text-sm
-                      font-medium
-                    "
-                    >TV SHOWS</NuxtLink
-                  >
-
-                  <a
-                    href="#"
-                    class="
-                      text-gray-300
-                      hover:bg-gray-700 hover:text-white
-                      px-3
-                      py-2
-                      rounded-md
-                      text-sm
-                      font-medium
-                    "
-                    >LOGIN</a
-                  >
+                  <template v-for="(navbar_menu, index) in menu">
+                    <NuxtLink
+                      :to="navbar_menu.route"
+                      :key="index"
+                      class="
+                        text-gray-300
+                        hover:bg-gray-700 hover:text-white
+                        px-3
+                        py-2
+                        rounded-md
+                        text-sm
+                        font-medium
+                        uppercase
+                      "
+                    >
+                      {{ navbar_menu.name }}
+                    </NuxtLink>
+                  </template>
                 </div>
               </div>
             </div>
@@ -297,66 +272,24 @@
     <div class="sm:hidden" id="mobile-menu">
       <div class="space-y-1 px-2 pt-2 pb-3">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-        <a
-          href="#"
-          class="
-            bg-gray-900
-            text-white
-            block
-            px-3
-            py-2
-            rounded-md
-            text-base
-            font-medium
-          "
-          aria-current="page"
-          >Dashboard</a
-        >
-
-        <a
-          href="#"
-          class="
-            text-gray-300
-            hover:bg-gray-700 hover:text-white
-            block
-            px-3
-            py-2
-            rounded-md
-            text-base
-            font-medium
-          "
-          >Team</a
-        >
-
-        <a
-          href="#"
-          class="
-            text-gray-300
-            hover:bg-gray-700 hover:text-white
-            block
-            px-3
-            py-2
-            rounded-md
-            text-base
-            font-medium
-          "
-          >Projects</a
-        >
-
-        <a
-          href="#"
-          class="
-            text-gray-300
-            hover:bg-gray-700 hover:text-white
-            block
-            px-3
-            py-2
-            rounded-md
-            text-base
-            font-medium
-          "
-          >Calendar</a
-        >
+        <template v-for="(navbar_menu, index) in menu">
+          <NuxtLink
+            :to="navbar_menu.route"
+            :key="index"
+            class="
+              bg-gray-900
+              text-white
+              block
+              px-3
+              py-2
+              rounded-md
+              text-base
+              font-medium
+            "
+            aria-current="page"
+            >Dashboard</NuxtLink
+          >
+        </template>
       </div>
     </div>
   </nav>
@@ -377,24 +310,21 @@ export default {
       search_status: false,
       menu: [
         {
-          id: 1,
-          name: "categories",
-          dropdown: true,
-          submenu: [],
-        },
-        {
           id: 2,
-          name: "movies",
+          name: "MOVIES",
+          route: "movies",
           dropdown: false,
         },
         {
           id: 3,
           name: "tv shows",
+          route: "/",
           dropdown: false,
         },
         {
           id: 4,
           name: "login",
+          route: "/",
           dropdown: false,
         },
       ],
