@@ -1,8 +1,5 @@
 <template>
   <div class="bg-gray-900">
-    <!-- recomendation movies -->
-    <!-- bg-[url('http://images6.fanpop.com/image/photos/38700000/First-Official-Deadpool-2016-Promotional-Banner-deadpool-2016-38737061-1800-600.jpg')] -->
-
     <!-- background highlight -->
     <div
       class="bg-gray-800 w-full h-screen absolute"
@@ -15,6 +12,7 @@
     ></div>
     <!-- background highlight -->
 
+    <!-- movie detail -->
     <div
       class="
         flex
@@ -123,7 +121,8 @@
         <ReuseableSpinner />
       </div>
     </div>
-    <!-- recomendation movies -->
+    <!-- movie detail -->
+
     <!-- reviews movie -->
     <div class="bg-gray-100 py-20">
       <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
