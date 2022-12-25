@@ -18,4 +18,7 @@ export default {
   setDiscoverMovies(state, data) {
     state.discover_movies = data.movies;
   },
+  setMoviesForNavbar(state, data) {
+    state.navbar_movies = data.movies;
+  },
 };

@@ -301,10 +301,14 @@ export default {
     this.getGenres();
     this.getMovies();
   },
+  computed: {
+    movies() {
+      return this.$store.state.movie.movies.navbar_movies;
+    },
+  },
   data() {
     return {
       categories: [],
-      movies: [],
       filter_movies: [],
       dropdown_status: false,
       search_status: false,
@@ -343,15 +347,7 @@ export default {
         });
     },
     getMovies() {
-      this.$store
-        .dispatch("movie/movies/fetchMovies")
-        .then((res) => {
-          this.movies = this.$store.state.movie.movies.data;
-        })
-        .catch((error) => {
-          //show alert
-          console.log("something went wrong" + error);
-        });
+      this.$store.dispatch("movie/movies/fetchMoviesForNavbar");
     },
     dropdownHandler() {
       this.dropdown_status = !this.dropdown_status;
