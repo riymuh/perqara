@@ -118,6 +118,11 @@
         </div>
       </div>
     </div>
+    <div class="flex h-screen bg-opacity-50 relative pb-20" v-else>
+      <div class="mx-auto mt-auto">
+        <ReuseableSpinner />
+      </div>
+    </div>
     <!-- recomendation movies -->
     <!-- reviews movie -->
     <div class="bg-gray-100 py-20">
@@ -129,7 +134,10 @@
         </div>
         <div class="flex gap-5 relative">
           <div class="relative w-full">
-            <div class="grid grid-cols-2 gap-5 justify-between">
+            <div
+              class="grid grid-cols-2 gap-5 justify-between"
+              v-if="reviews.length > 0"
+            >
               <template v-for="(review, index) in reviews">
                 <PagesMoviesReviewCard
                   :review="review"
@@ -137,6 +145,9 @@
                   v-if="index <= 1"
                 />
               </template>
+            </div>
+            <div v-else class="text-center">
+              <ReuseableSpinner />
             </div>
           </div>
         </div>

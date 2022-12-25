@@ -85,7 +85,7 @@
           <div class="text-center mt-8" v-if="movies.length !== 0">
             <button
               type="button"
-              @click="loadMore"
+              @click="loadMore()"
               class="
                 text-white
                 bg-red-700
@@ -96,8 +96,11 @@
                 px-5
                 py-1
                 text-center
+                flex
+                mx-auto
               "
             >
+              <ReuseableSpinner width="4" height="4" v-if="load_more_spinner" />
               Load more
             </button>
           </div>
@@ -123,6 +126,7 @@ export default {
       sorts_dropdown: this.$store.state.movie.sort.data,
       sort_selected: "popular", //default
       load_more: true,
+      load_more_spinner: false,
     };
   },
   methods: {
@@ -135,6 +139,8 @@ export default {
         })
         .then((res) => {
           this.movies = this.$store.state.movie.movies.data;
+          this.load_more_spinner = false;
+          this.load_more = true;
           this.pages += 1;
         })
         .catch((error) => {
@@ -154,6 +160,7 @@ export default {
         });
     },
     loadMore() {
+      this.load_more_spinner = true;
       this.getMovies();
     },
     filterMovies(e) {

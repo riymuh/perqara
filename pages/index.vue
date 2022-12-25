@@ -6,10 +6,10 @@
         <div
           :class="
             banner_active == 1
-              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-2'
+              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-2 transition-all delay-300'
               : banner_active == 2
-              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-1'
-              : 'flex shrink-0 max-w-2xl rounded-lg items-center order-3'
+              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-1 transition-all delay-300'
+              : 'flex shrink-0 max-w-2xl rounded-lg items-center order-3 transition-all delay-300'
           "
         >
           <a href="#">
@@ -44,10 +44,10 @@
         <div
           :class="
             banner_active == 2
-              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-2'
+              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-2 transition-all'
               : banner_active == 3
-              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-1'
-              : 'flex shrink-0 max-w-2xl rounded-lg items-center order-3'
+              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-1 transition-all'
+              : 'flex shrink-0 max-w-2xl rounded-lg items-center order-3 transition-all'
           "
         >
           <a href="#">
@@ -82,10 +82,10 @@
         <div
           :class="
             banner_active == 3
-              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-2'
+              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-2 transition-all'
               : banner_active == 2
-              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-3'
-              : 'flex shrink-0 max-w-2xl rounded-lg items-center order-1'
+              ? 'flex shrink-0 max-w-2xl rounded-lg items-center order-3 transition-all'
+              : 'flex shrink-0 max-w-2xl rounded-lg items-center order-1 transition-all'
           "
         >
           <a href="#">
@@ -212,6 +212,7 @@ export default {
 
   mounted() {
     this.getMovies();
+    this.autoSlider();
   },
   data() {
     return {
@@ -237,6 +238,15 @@ export default {
     },
     handlerBanner(param) {
       this.banner_active = param;
+    },
+    autoSlider() {
+      setInterval(() => {
+        if (this.banner_active == 3) {
+          this.banner_active = 1;
+        } else {
+          this.banner_active += 1;
+        }
+      }, 3000);
     },
   },
 };
