@@ -20,13 +20,6 @@
             aria-expanded="false"
           >
             <span class="sr-only">Open main menu</span>
-            <!--
-            Icon when menu is closed.
-
-            Heroicon name: outline/bars-3
-
-            Menu open: "hidden", Menu closed: "block"
-          -->
             <svg
               class="block h-6 w-6"
               xmlns="http://www.w3.org/2000/svg"
@@ -42,13 +35,6 @@
                 d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
               />
             </svg>
-            <!--
-            Icon when menu is open.
-
-            Heroicon name: outline/x-mark
-
-            Menu open: "block", Menu closed: "hidden"
-          -->
             <svg
               class="hidden h-6 w-6"
               xmlns="http://www.w3.org/2000/svg"
@@ -305,10 +291,12 @@ export default {
     movies() {
       return this.$store.state.movie.movies.navbar_movies;
     },
+    categories() {
+      return this.$store.state.movie.genres.navbar_genres;
+    },
   },
   data() {
     return {
-      categories: [],
       filter_movies: [],
       dropdown_status: false,
       search_status: false,
@@ -336,15 +324,7 @@ export default {
   },
   methods: {
     getGenres() {
-      this.$store
-        .dispatch("movie/genres/fetchGenres")
-        .then((res) => {
-          this.categories = this.$store.state.movie.genres.data;
-        })
-        .catch((error) => {
-          //show alert
-          console.log("something went wrong" + error);
-        });
+      this.$store.dispatch("movie/genres/fetchGenresForNavbar");
     },
     getMovies() {
       this.$store.dispatch("movie/movies/fetchMoviesForNavbar");

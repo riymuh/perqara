@@ -1,3 +1,4 @@
 export default () => ({
-    data: null,
-  })
+  data: null,
+  navbar_genres: [],
+});
