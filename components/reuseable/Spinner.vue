@@ -1,20 +1,15 @@
 <template>
   <div role="status">
     <svg
-      :class="
-        `
+      class="
         inline
         mr-2
-        w-` +
-        width +
-        `
-        h-` +
-        height +
-        `
+        w-4
+        h-4
         text-gray-200
         animate-spin
         dark:text-gray-600
-        fill-red-600`
+        fill-red-600
       "
       viewBox="0 0 100 101"
       fill="none"

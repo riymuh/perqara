@@ -100,7 +100,7 @@
                 mx-auto
               "
             >
-              <ReuseableSpinner width="4" height="4" v-if="load_more_spinner" />
+              <ReuseableSpinner v-if="load_more_spinner" />
               Load more
             </button>
           </div>
