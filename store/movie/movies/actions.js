@@ -33,6 +33,7 @@ export default {
     });
   },
   fetchMovie({ commit }, param = null) {
+    commit("setMovie", null);
     return new Promise((resolve, reject) => {
       this.$axios
         .$get(
