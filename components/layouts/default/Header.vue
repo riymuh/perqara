@@ -246,6 +246,21 @@
                       {{ navbar_menu.name }}
                     </NuxtLink>
                   </template>
+                  <a
+                    href="https://github.com/riymuh"
+                    class="
+                      text-gray-300
+                      hover:bg-gray-700 hover:text-white
+                      px-3
+                      py-2
+                      rounded-md
+                      text-sm
+                      font-medium
+                      uppercase
+                    "
+                    target="__blank"
+                    >My Github</a
+                  >
                 </div>
               </div>
             </div>
@@ -310,12 +325,6 @@ export default {
         {
           id: 3,
           name: "tv shows",
-          route: "/",
-          dropdown: false,
-        },
-        {
-          id: 4,
-          name: "login",
           route: "/",
           dropdown: false,
         },

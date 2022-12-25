@@ -4,7 +4,7 @@
       <div class="grid grid-cols-3 gap-4 justify-between py-12">
         <div class="text-left">© 2021 MoovieTime. All rights reserved.</div>
         <div class="mx-auto"><LayoutsLogoNegative /></div>
-        <div class="text-right">Made with Nuxt JS</div>
+        <div class="text-right">Made with Nuxt JS & Tailwind</div>
       </div>
     </div>
   </div>
