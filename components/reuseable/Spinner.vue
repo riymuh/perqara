@@ -9,13 +9,12 @@
         width +
         `
         h-` +
-        width +
+        height +
         `
         text-gray-200
         animate-spin
-        fill-` +
-        color +
-        `-600`
+        dark:text-gray-600
+        fill-red-600`
       "
       viewBox="0 0 100 101"
       fill="none"
@@ -38,16 +37,12 @@
 export default {
   props: {
     width: {
-      type: [Number, String],
+      type: Number,
       default: 8,
     },
     height: {
-      type: [Number, String],
+      type: Number,
       default: 8,
-    },
-    color: {
-      type: String,
-      default: "red",
     },
   },
 };
