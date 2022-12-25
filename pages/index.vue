@@ -155,11 +155,12 @@
         <div class="mb-12 pt-4 relative">
           <button
             type="button"
-            class="
+            :class="
+              sort_selected == 'popular'
+                ? `
               text-white
               bg-red-700
               hover:bg-red-800
-              focus:outline-none focus:ring-4 focus:ring-red-300
               font-medium
               rounded-full
               text-sm
@@ -167,19 +168,31 @@
               py-1
               text-center
               mr-2
-              mb-2
-              dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900
+              mb-2`
+                : ` text-white
+              bg-gray-700
+              hover:bg-gray-800
+              font-medium
+              rounded-full
+              text-sm
+              px-5
+              py-1
+              text-center
+              mr-2
+              mb-2`
             "
+            @click="filterMovies('popular')"
           >
             Popularity
           </button>
           <button
             type="button"
-            class="
+            :class="
+              sort_selected == 'upcoming'
+                ? `
               text-white
-              bg-gray-700
-              hover:bg-gray-800
-              focus:outline-none focus:ring-4 focus:ring-gray-300
+              bg-red-700
+              hover:bg-red-800
               font-medium
               rounded-full
               text-sm
@@ -187,9 +200,20 @@
               py-1
               text-center
               mr-2
-              mb-2
-              dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-900
+              mb-2`
+                : ` text-white
+              bg-gray-700
+              hover:bg-gray-800
+              font-medium
+              rounded-full
+              text-sm
+              px-5
+              py-1
+              text-center
+              mr-2
+              mb-2`
             "
+            @click="filterMovies('upcoming')"
           >
             Release Date
           </button>
@@ -197,7 +221,7 @@
       </div>
       <div
         class="relative grid grid-cols-5 gap-5 items-center justify-between"
-        v-if="movies"
+        v-if="movies | !discover_status"
       >
         <template v-for="(movie, index) in movies">
           <PagesMoviesMovieCard v-if="index <= 9" :key="index" :movie="movie"
@@ -223,14 +247,19 @@ export default {
       movies: null,
       pages: null,
       banner_active: 1,
+      sort_selected: "popular", //default
+      discover_status: false,
     };
   },
   methods: {
     getMovies() {
       this.$store
-        .dispatch("movie/movies/fetchMovies")
+        .dispatch("movie/movies/fetchMovies", {
+          sort: this.sort_selected,
+        })
         .then((res) => {
           this.movies = this.$store.state.movie.movies.data;
+          this.discover_status = false;
         })
         .catch((error) => {
           //show alert
@@ -248,6 +277,11 @@ export default {
           this.banner_active += 1;
         }
       }, 3000);
+    },
+    filterMovies(val) {
+      this.sort_selected = val;
+      this.discover_status = true;
+      this.getMovies();
     },
   },
 };

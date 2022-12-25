@@ -8,7 +8,7 @@
         movie.backdrop_path +
         ')'
       "
-      v-if="movie"
+      v-if="movie | !movie_detail_status"
     ></div>
     <!-- background highlight -->
 
@@ -23,7 +23,7 @@
         relative
         pb-20
       "
-      v-if="movie"
+      v-if="movie | !movie_detail_status"
     >
       <div class="mx-auto mt-auto">
         <div
@@ -202,6 +202,7 @@ export default {
     return {
       movies: null,
       pages: null,
+      movie_detail_status: false,
     };
   },
   filters: {
@@ -220,9 +221,18 @@ export default {
   },
   methods: {
     getMovie() {
-      this.$store.dispatch("movie/movies/fetchMovie", {
-        movie_id: this.$route.params.id,
-      });
+      this.movie_detail_status = true;
+      this.$store
+        .dispatch("movie/movies/fetchMovie", {
+          movie_id: this.$route.params.id,
+        })
+        .then((res) => {
+          this.movie_detail_status = false;
+        })
+        .catch((error) => {
+          //show alert
+          console.log("something went wrong" + error);
+        });
     },
     getMoviesRecommendation() {
       this.$store.dispatch("movie/movies/fetchMoviesRecommendation", {
