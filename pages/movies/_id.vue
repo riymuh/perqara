@@ -96,7 +96,7 @@
                   <div class="p-8">
                     <div class="flex flex-col text-sm">
                       <span class="text-gray-400">BUDGET</span>
-                      <p>{{ movie.budget | dollarCurrency }}</p>
+                      <p>{{ movie.budget | currency }}</p>
                     </div>
                   </div>
                   <div class="p-8">
@@ -188,15 +188,13 @@ export default {
     this.getMoviesRecommendation();
     this.getReviews();
   },
-  filters: {
-    dollarCurrency: function (val) {
-      return "haha";
+  computed: {
+    formatCurrency(val) {
       const formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
       });
-      return "hallo";
-      return formatter.format(val);
+      return formatter.format(Number(val));
     },
   },
   computed: {
@@ -221,6 +219,13 @@ export default {
       const d = new Date(value);
       let year = d.getFullYear();
       return year;
+    },
+    currency: function (value) {
+      const formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      });
+      return formatter.format(Number(value));
     },
   },
   methods: {
