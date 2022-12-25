@@ -3,4 +3,5 @@ export default () => ({
   movie_detail: null,
   reviews: [],
   recommendations: [],
+  discover_movies: [],
 });

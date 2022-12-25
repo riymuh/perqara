@@ -15,4 +15,7 @@ export default {
   setMoviesRecommendation(state, data) {
     state.recommendations = data.movies;
   },
+  setDiscoverMovies(state, data) {
+    state.discover_movies = data.movies;
+  },
 };

@@ -146,7 +146,7 @@
               </template>
             </div>
             <div v-else class="text-center">
-              <ReuseableSpinner />
+              <p>No reviews</p>
             </div>
           </div>
         </div>
@@ -162,7 +162,10 @@
       </div>
       <div class="flex gap-5 relative">
         <div class="relative w-full">
-          <div class="grid grid-cols-5 gap-5 items-center justify-between">
+          <div
+            class="grid grid-cols-5 gap-5 items-center justify-between"
+            v-if="recommendations.length > 0"
+          >
             <template v-for="(movie, index) in recommendations">
               <PagesMoviesMovieCard
                 :key="index"
@@ -170,6 +173,9 @@
                 v-if="index <= 4"
               />
             </template>
+          </div>
+          <div class="text-center" v-else>
+            <ReuseableSpinner />
           </div>
         </div>
       </div>

@@ -221,7 +221,7 @@
       </div>
       <div
         class="relative grid grid-cols-5 gap-5 items-center justify-between"
-        v-if="movies | !discover_status"
+        v-if="movies"
       >
         <template v-for="(movie, index) in movies">
           <PagesMoviesMovieCard v-if="index <= 9" :key="index" :movie="movie"
@@ -242,9 +242,13 @@ export default {
     this.getMovies();
     this.autoSlider();
   },
+  computed: {
+    movies() {
+      return this.$store.state.movie.movies.discover_movies;
+    },
+  },
   data() {
     return {
-      movies: null,
       pages: null,
       banner_active: 1,
       sort_selected: "popular", //default
@@ -253,18 +257,9 @@ export default {
   },
   methods: {
     getMovies() {
-      this.$store
-        .dispatch("movie/movies/fetchMovies", {
-          sort: this.sort_selected,
-        })
-        .then((res) => {
-          this.movies = this.$store.state.movie.movies.data;
-          this.discover_status = false;
-        })
-        .catch((error) => {
-          //show alert
-          console.log("something went wrong" + error);
-        });
+      this.$store.dispatch("movie/movies/fetchDiscoverMovies", {
+        sort: this.sort_selected,
+      });
     },
     handlerBanner(param) {
       this.banner_active = param;
