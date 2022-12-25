@@ -195,18 +195,22 @@
           </button>
         </div>
       </div>
-      <div class="relative grid grid-cols-5 gap-5 items-center justify-between">
+      <div
+        class="relative grid grid-cols-5 gap-5 items-center justify-between"
+        v-if="movies"
+      >
         <template v-for="(movie, index) in movies">
           <PagesMoviesMovieCard v-if="index <= 9" :key="index" :movie="movie"
         /></template>
+      </div>
+      <div class="text-center" v-else>
+        <ReuseableSpinner />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: "IndexPage",
 
@@ -223,17 +227,14 @@ export default {
   },
   methods: {
     getMovies() {
-      axios
-        .get(
-          "https://api.themoviedb.org/3/movie/upcoming?api_key=84592cf2007007a499b04d12d281c100"
-        )
+      this.$store
+        .dispatch("movie/movies/fetchMovies")
         .then((res) => {
-          console.log(res);
-          this.movies = res.data.results;
-          this.pages = res.data.page;
+          this.movies = this.$store.state.movie.movies.data;
         })
         .catch((error) => {
-          console.log(error);
+          //show alert
+          console.log("something went wrong" + error);
         });
     },
     handlerBanner(param) {
